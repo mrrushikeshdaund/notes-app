@@ -1,10 +1,10 @@
 import noteModel from "../models/notes.model.js";
 
 export const createNote = async (req, res) => {
-  const { title, content, createdBy } = req.body;
+  const { title, content } = req.body;
 
   // Validate input
-  if (!title || !content || !createdBy) {
+  if (!title || !content) {
     return res.status(400).json({
       message: "Please fill all fields",
     });
@@ -14,7 +14,7 @@ export const createNote = async (req, res) => {
   const newNote = new noteModel({
     title,
     content,
-    createdBy,
+    createdBy: req.userId,
     lastUpdated: new Date(),
   });
 

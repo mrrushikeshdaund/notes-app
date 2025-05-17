@@ -1,16 +1,29 @@
-import React from "react";
+import React, { use } from "react";
 import { useState, useEffect } from "react";
+import { fetchNotes } from "../api";
 
 function MyNotes() {
   const [loading, setLoading] = useState(true);
   const [notes, setNotes] = useState([]);
 
-  const fetchNotes = async () => {};
+  const getNotes = async () => {
+    const response = await fetchNotes();
+    console.log(response);
+    setNotes(response.data);
+    setLoading(false);
+  };
+  useEffect(() => {
+    getNotes();
+  }, []);
+
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">My Notes</h1>
-        <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        <button
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          onClick={() => (window.location.href = "/dashboard/createNote")}
+        >
           + Create Note
         </button>
       </div>

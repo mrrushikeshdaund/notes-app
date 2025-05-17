@@ -11,8 +11,8 @@ import { verifyToken } from "../controllers/auth.controller.js";
 
 const router = express.Router();
 
-router.post("/createNote",  createNote);
-router.post("/getNotes", getNotes);
+router.post("/createNote", verifyToken, createNote);
+router.get("/getNotes", verifyToken, getNotes);
 router.put("/updateNote", updateNote);
 router.delete("/deleteNote", deleteNote);
 router.post("/addCollaborator", addCollaborator);
