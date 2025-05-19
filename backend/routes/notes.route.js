@@ -14,7 +14,7 @@ const router = express.Router();
 router.post("/createNote", verifyToken, createNote);
 router.get("/getNotes", verifyToken, getNotes);
 router.put("/updateNote", updateNote);
-router.delete("/deleteNote", deleteNote);
+router.delete("/deleteNote", verifyToken, deleteNote);
 router.post("/addCollaborator", addCollaborator);
 router.post("/removeCollaborator", removeCollaborator);
 

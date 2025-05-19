@@ -1,18 +1,25 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import HeaderSection from "../components/HeaderSection";
 
 const Dashboard = () => {
   return (
     <>
-      <header className="bg-blue-600 text-white p-4">
-        <h1 className="text-2xl font-bold">Note App</h1>
-      </header>
+      <HeaderSection />
       <div className="flex h-[91vh] bg-gray-100">
         {/* Sidebar */}
         <aside className="w-64 bg-white border-r shadow-md hidden md:block">
           <div className="p-6 font-bold text-xl text-blue-600"></div>
           <nav className="px-4">
             <ul className="space-y-2">
+              <li>
+                <a
+                  href="/dashboard/"
+                  className="block py-2 px-3 rounded hover:bg-blue-50 text-gray-700"
+                >
+                  📄 Dashboard
+                </a>
+              </li>
               <li>
                 <a
                   href="/dashboard/myNotes"

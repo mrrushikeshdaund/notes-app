@@ -73,7 +73,7 @@ export const updateNote = async (req, res) => {
   }
 };
 export const deleteNote = async (req, res) => {
-  const { noteId } = req.body;
+  const { noteId } = req.query;
 
   // Validate input
   if (!noteId) {
