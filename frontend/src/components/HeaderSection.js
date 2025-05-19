@@ -1,8 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const HeaderSection = () => {
+const HeaderSection = ({ userName }) => {
   const navigate = useNavigate();
+
   const handleSignOut = () => {
     localStorage.removeItem("token");
     navigate("/");
@@ -32,7 +33,7 @@ const HeaderSection = () => {
         </button>
 
         {/* User Name */}
-        <span className="font-medium">John Doe</span>
+        <span className="font-medium">Hello, {userName}</span>
 
         {/* Logout Button */}
         <button

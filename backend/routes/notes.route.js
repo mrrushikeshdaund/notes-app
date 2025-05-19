@@ -13,7 +13,7 @@ const router = express.Router();
 
 router.post("/createNote", verifyToken, createNote);
 router.get("/getNotes", verifyToken, getNotes);
-router.put("/updateNote", updateNote);
+router.put("/updateNote", verifyToken, updateNote);
 router.delete("/deleteNote", verifyToken, deleteNote);
 router.post("/addCollaborator", addCollaborator);
 router.post("/removeCollaborator", removeCollaborator);

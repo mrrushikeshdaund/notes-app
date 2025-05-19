@@ -3,10 +3,15 @@ import { useState, useEffect } from "react";
 import { deleteNote, fetchNotes } from "../api";
 import { toast, ToastContainer } from "react-toastify";
 import LoadingIndicator from "../components/LoadingIndicator";
+import { useDispatch } from "react-redux";
+import { setSelectedNoteData } from "../redux/noteSlice";
+import { useNavigate } from "react-router-dom";
 
 function MyNotes() {
   const [loading, setLoading] = useState(true);
   const [notes, setNotes] = useState([]);
+  const dispatch = useDispatch();
+  const naviagate = useNavigate();
 
   const getNotes = async () => {
     const response = await fetchNotes();
@@ -26,6 +31,11 @@ function MyNotes() {
     toast.success("Notes Deleted");
   };
 
+  const handleUpdateAction = (note) => {
+    naviagate(`/dashboard/${note._id}/updateNote`);
+    dispatch(setSelectedNoteData(note));
+  };
+
   return (
     <>
       <div className="p-6">
@@ -33,7 +43,7 @@ function MyNotes() {
           <h1 className="text-2xl font-bold">My Notes</h1>
           <button
             className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-            onClick={() => (window.location.href = "/dashboard/createNote")}
+            onClick={() => naviagate("/dashboard/createNote")}
           >
             + Create Note
           </button>
@@ -66,7 +76,10 @@ function MyNotes() {
                   {note.content}
                 </p>
                 <div className="mt-4 flex gap-2">
-                  <button className="text-sm px-3 py-1 rounded bg-gray-200 hover:bg-gray-300">
+                  <button
+                    className="text-sm px-3 py-1 rounded bg-gray-200 hover:bg-gray-300"
+                    onClick={() => handleUpdateAction(note)}
+                  >
                     Edit
                   </button>
                   <button

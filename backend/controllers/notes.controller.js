@@ -46,7 +46,8 @@ export const getNotes = async (req, res) => {
   }
 };
 export const updateNote = async (req, res) => {
-  const { noteId, title, content } = req.body;
+  const { title, content } = req.body;
+  const { noteId } = req.query;
 
   // Validate input
   if (!noteId || !title || !content) {

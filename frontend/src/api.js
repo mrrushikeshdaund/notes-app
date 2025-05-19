@@ -73,3 +73,24 @@ export const deleteNote = async (noteId) => {
     throw new Error(error.response.data.error || "Error creating note");
   }
 };
+
+export const updateNote = async (noteId, noteData) => {
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      throw new Error("No token found");
+    }
+    const response = await axios.put(
+      `${API_URL}/notes/updateNote?noteId=${noteId}`,
+      noteData,
+      {
+        headers: {
+          authorization: token,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.error || "Error updating note");
+  }
+};

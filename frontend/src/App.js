@@ -7,6 +7,7 @@ import Dashboard from "./pages/Dashboard";
 import NotesSummary from "./pages/NotesSummary";
 import Shared from "./pages/Shared";
 import CreateNote from "./pages/CreateNote";
+import UpdateNote from "./pages/UpdateNote";
 
 function App() {
   return (
@@ -20,6 +21,10 @@ function App() {
             <Route path="/dashboard/myNotes" element={<MyNotes />} />
             <Route path="/dashboard/shared" element={<Shared />} />
             <Route path="/dashboard/createNote" element={<CreateNote />} />
+            <Route
+              path="/dashboard/:noteId/updateNote"
+              element={<UpdateNote />}
+            />
           </Route>
         </Routes>
       </Router>

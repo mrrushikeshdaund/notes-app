@@ -5,12 +5,15 @@ import { loginUser } from "../api";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import LoadingIndicator from "../components/LoadingIndicator";
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from "../redux/userSlice";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loadingFlag, setLoadingFlag] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -21,6 +24,7 @@ const Login = () => {
 
       if (response.token) {
         console.log("Login successful:", response);
+        dispatch(setCurrentUser(response.user));
         toast.success("Login successful!");
 
         // Save token if needed

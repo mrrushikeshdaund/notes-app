@@ -1,11 +1,14 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import HeaderSection from "../components/HeaderSection";
+import { useSelector } from "react-redux";
 
 const Dashboard = () => {
+  const { currentUser } = useSelector((state) => state.user);
+  const navigate = useNavigate();
   return (
     <>
-      <HeaderSection />
+      <HeaderSection userName={currentUser.name} />
       <div className="flex h-[91vh] bg-gray-100">
         {/* Sidebar */}
         <aside className="w-64 bg-white border-r shadow-md hidden md:block">
@@ -13,36 +16,36 @@ const Dashboard = () => {
           <nav className="px-4">
             <ul className="space-y-2">
               <li>
-                <a
-                  href="/dashboard/"
-                  className="block py-2 px-3 rounded hover:bg-blue-50 text-gray-700"
+                <span
+                  onClick={() => navigate("/dashboard/")}
+                  className="block py-2 px-3 cursor-pointer rounded hover:bg-blue-50 text-gray-700"
                 >
                   📄 Dashboard
-                </a>
+                </span>
               </li>
               <li>
-                <a
-                  href="/dashboard/myNotes"
-                  className="block py-2 px-3 rounded hover:bg-blue-50 text-gray-700"
+                <span
+                  onClick={() => navigate("/dashboard/myNotes")}
+                  className="block py-2 px-3 rounded cursor-pointer hover:bg-blue-50 text-gray-700"
                 >
                   📝 My Notes
-                </a>
+                </span>
               </li>
               <li>
-                <a
-                  href="/dashboard/shared"
-                  className="block py-2 px-3 rounded hover:bg-blue-50 text-gray-700"
-                >
-                  👥 Shared with Me
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/dashboard/createNote"
-                  className="block py-2 px-3 rounded hover:bg-blue-50 text-gray-700"
+                <span
+                  onClick={() => navigate("/dashboard/createNote")}
+                  className="block py-2 px-3 rounded cursor-pointer hover:bg-blue-50 text-gray-700"
                 >
                   ➕ Create New Note
-                </a>
+                </span>
+              </li>
+              <li>
+                <span
+                  onClick={() => navigate("/dashboard/shared")}
+                  className="block py-2 px-3 rounded cursor-pointer hover:bg-blue-50 text-gray-700"
+                >
+                  👥 Manage Collaborators
+                </span>
               </li>
             </ul>
           </nav>
